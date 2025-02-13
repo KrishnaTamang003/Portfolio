@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Portfolio of Sanjay Theeng Tamang">
+    <meta name="keywords" content="web developer, portfolio, contact, experience, about">
+    <meta name="author" content="Sanjay Theeng Tamang">
+    <title>Sanjay Theeng Tamang - Web Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Hello, I'm <span>Sanjay Theeng Tamang</span></h1>
+                <p>Web Developer | Designer | Problem Solver</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+            <div class="hero-photo">
+                <img src="My Photo.jpg" alt="Sanjay Theeng Tamang">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-description">
+                I’m a passionate Web Developer skilled in <strong>HTML, CSS, JavaScript, and React.js</strong>, dedicated to crafting modern, responsive, and user-friendly websites. With experience in <strong>Node.js, Express.js, and databases (MongoDB & SQL)</strong>, I build efficient full-stack applications.
+                <br><br>
+                Currently based in <strong>Bangalore, India</strong>, pursuing a <strong>BCA degree</strong>, I’m focused on developing visually appealing websites with a <strong>black and sky blue</strong> theme.
+                <br><br>
+                Beyond coding, I enjoy <em>exploring new places, watching thrillers/sci-fi</em>, and staying updated on the latest <strong>tech trends</strong>.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="experience-section">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-container">
+            <div class="experience-box">
+                <h3>Educational Background</h3>
+                <ul>
+                    <li><b>10th Standard</b> - Children's Liberty English Boarding School, Kathmandu, Nepal <h5>(2017)</h5></li>
+                    <li><b>12th Standard</b> - Reliance International Academy, Kathmandu, Nepal <h5>(2018-2019)</h5></li>
+                    <li><b>BCA</b> - Bangalore City University, Bangalore, India <h5>(2021-2025)</h5></li>
+                </ul>
+            </div>
+            <div class="experience-box">
+                <h3>Work Experience</h3>
+                <ul>
+                    <li><b>Frontend Development</b> - HTML, CSS, JavaScript, React. <h5>Side Hustle</h5></li>
+                    <li><b>Operations & Management</b> - Warehouse Operations and Sales Management at Happyearth Enterprises LLP <h5>(2020-2024)</h5></li>
+                    <li><b>Data Analyst</b> - Freelance Data Analysis projects <h5>2025</h5></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-content">
+            <h2 class="section-title">Contact</h2>
+            <p>For collaborations or inquiries, reach me at:</p>
+            <p><a href="mailto:theengtamangsanjay@gmail.com">theengtamangsanjay@gmail.com</a> <br> <br> Contact no : <span>9380708165</span> </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sanjay Theeng Tamang. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll(".about-section, .experience-section, .contact-section");
+            function fadeInOnScroll() {
+                sections.forEach(section => {
+                    if (section.getBoundingClientRect().top < window.innerHeight * 0.85) {
+                        section.style.opacity = 1;
+                        section.style.transform = "translateY(0)";
+                    }
+                });
+            }
+            window.addEventListener("scroll", fadeInOnScroll);
+            fadeInOnScroll();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
