@@ -197,7 +197,7 @@ body {
     box-shadow: 0 25px 45px rgba(0, 255, 255, 0.5);
 }
 
-/* Experience Section */
+
 /* Experience Section Styling */
 .experience-section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 20, 50, 0.95));
@@ -209,9 +209,13 @@ body {
     border-image: linear-gradient(to right, #000428, #004e92);
     border-image-slice: 1;
 }
-h5{
-    color:#00eaff;
+
+h5 {
+    color: #00eaff;
+    font-size: 14px;
+    margin-top: 5px;
 }
+
 /* Experience Container */
 .experience-container {
     display: flex;
@@ -240,57 +244,90 @@ h5{
     box-shadow: 0 12px 30px rgba(0, 255, 255, 0.5);
 }
 
-/* Section Titles */
-.experience-box h4 {
-    font-size: 0.8rem;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #00eaff;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.experience-box h4 i {
-    font-size: 1.5rem;
-    color: #00eaff;
-}
-
-/* List Styling */
-.experience-list ul {
+/* Sub-list for Software & Business Tools */
+.sub-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding-left: 0;
+    margin-top: 10px;
+    border-left: 3px solid #00eaff;
+    padding-left: 15px;
 }
 
-.experience-list li {
-    font-size: 1.1rem;
-    padding: 12px 0;
+.sub-list li {
+    font-size: 1rem;
+    padding: 8px 0;
+    color: #ddd;
     display: flex;
     align-items: center;
-    gap: 14px;
-    color: #ddd;
-    border-left: 4px solid cyan;
-    padding-left: 15px;
-    position: relative;
-    font-weight: 500;
 }
 
-.experience-list li i {
-    font-size: 1.3rem;
-    color: #3c9292;
+.sub-list li span {
+    font-weight: 600;
+    color: #00eaff;
+    margin-right: 8px;
+}
+/* Educational Background Section */
+.education-box {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 25px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    backdrop-filter: blur(8px);
 }
 
-/* Highlight Dates */
-.experience-list li h3 {
-    text-decoration: underline;
+.education-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 255, 255, 0.5);
+}
+
+/* Primary Heading (Main Point) */
+.education-box li {
     font-size: 1.2rem;
-    font-weight: 700;
-    color: #3c9292;
-    margin-left: auto;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
 }
 
+/* Secondary Text (Description) */
+.education-box p {
+    font-size: 0.9rem;   /* Smaller Font */
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7); /* Reduced visibility */
+    line-height: 1.4;
+    margin-top: 5px;
+}
+
+/* Date Styling */
+.education-box h5 {
+    color: #00eaff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 8px;
+}
+.edu-title {
+    font-size: 1.0rem; /* Slightly larger for emphasis */
+    font-weight: 600;
+    color: #fff; /* Matching the cyan theme */
+    display: block; /* Ensures it appears clearly as a heading */
+    margin-bottom: 5px; /* Adds spacing before the description */
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .experience-box {
+        max-width: 90%;
+    }
+
+    .sub-list {
+        padding-left: 10px;
+    }
+}
 
 
 /* Contact Section */
