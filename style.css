@@ -397,17 +397,8 @@ span{
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease;
-}
+    
 
-.contact-content a:hover {
-    color: #00ffff;
-    text-decoration: underline;
-}
-
-.contact-content:hover {
-    transform: translateY(-5px);
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 10px 30px rgba(18, 82, 82, 0.797);
 }
 #des{
     padding-bottom: 10px;
@@ -425,12 +416,15 @@ span{
 }
 .contact-content a:hover {
     color: #00ffff;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    text-shadow: 0 0 4px rgba(139, 231, 231, 0.8);
     text-decoration: none;
+    transform: scale(1.1); /* Slight popup effect */
+    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
+
 .contact-content span:hover {
     color: #00ffff;
-    text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
 }
 
 /* Footer */
