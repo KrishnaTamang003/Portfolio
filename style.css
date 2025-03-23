@@ -47,7 +47,7 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 2.9rem; /* Base size for h1 - increased from 2.5rem */
+    font-size: 2.3rem; /* Base size for h1 - increased from 2.5rem */
     font-weight: 700;
     color: #fff;
     animation: fadeInUp 1.5s ease-out;
@@ -55,18 +55,18 @@ body {
 
 .hero-text h1 span {
     color: #00b4d8;
-    font-size: 2.5rem; /* Smaller than h1 */
-    font-weight: 800; /* Optional: Makes it stand out more */
+    font-size: 2.9rem; /* Smaller than h1 */
+    font-weight: 700; /* Optional: Makes it stand out more */
 
 
 }
 @media (max-width: 480px) {
     .hero-text h1 {
-        font-size: 2.5rem; /* Further reduce for very small screens and match span*/
+        font-size: 2.3rem; /* Further reduce for very small screens and match span*/
     }
 
     .hero-text h1 span {
-        font-size: 2.3rem; /* Even smaller for span on very small screens */
+        font-size: 2.5rem; /* Even smaller for span on very small screens */
     }
 }
 
@@ -172,7 +172,9 @@ body {
     padding: 80px 20px;  /* More breathing space */
     margin: 0 auto; /* Centering the section */
     width: 100%; /* Full width */
+    hyphens: auto;
 }
+
 
 @media (max-width: 1024px) { /* Tablet screens */
     .about-section {
@@ -188,7 +190,7 @@ body {
 
 
 .about-container {
-    max-width: 1100px;
+    max-width: 1000px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -208,13 +210,15 @@ body {
 }
 
 .about-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     color: #f1f1f1;
     text-align: justify;
     text-justify: inter-word;
     animation: fadeInUp 1.5s ease-out 0.5s;
 }
+
+
 
 .about-container:hover {
     transform: translateY(-5px);
@@ -279,22 +283,49 @@ h5 {
     padding-left: 0;
     margin-top: 10px;
     border-left: 3px solid #00eaff;
-    padding-left: 15px;
+    padding-left: 12px;
+    max-width: 100%;
 }
 
+/* List items styling */
 .sub-list li {
-    font-size: 1rem;
-    padding: 8px 0;
+    font-size: 0.95rem; /* Slightly smaller font for better readability */
+    padding: 6px 0;
     color: #ddd;
     display: flex;
     align-items: center;
+    flex-wrap: wrap; /* Ensures proper wrapping on small screens */
 }
 
+/* Styling for highlighted text */
 .sub-list li span {
     font-weight: 600;
     color: #00eaff;
-    margin-right: 8px;
+    margin-right: 6px;
+    flex-shrink: 0; /* Prevents shrinking on smaller screens */
 }
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 480px) {
+    .sub-list {
+        padding-left: 10px;
+        border-left-width: 2px;
+    }
+
+    .sub-list li {
+        font-size: 0.9rem;
+        padding: 5px 0;
+        flex-direction: column; /* Stacks elements on very small screens */
+        align-items: flex-start;
+        hyphens: auto;
+
+    }
+
+    .sub-list li span {
+        margin-bottom: 2px; /* Adds spacing when stacked */
+    }
+}
+
 /* Educational Background Section */
 .education-box {
     background: rgba(255, 255, 255, 0.12);
@@ -632,6 +663,7 @@ h5 {
 
 /* Media Query for Smaller Screens */
 @media (max-width: 768px) {
+    @media (max-width: 768px) {
 
     #projects {
       padding: 60px 15px; /* Slightly reduced padding for smaller screens */
@@ -695,6 +727,7 @@ h5 {
         font-size: 0.7rem; /* Make link smaller */
         padding: 6px 12px; /* Reduced padding */
     }
+}
 }
 /* Contact Section */
 .contact-section {
@@ -773,16 +806,14 @@ span{
     padding: 0%;
 }
 .contact-content a:hover {
-    color: #00ffff;
-    text-shadow: 0 0 4px rgba(139, 231, 231, 0.8);
+    color: #f1f1f1;
     text-decoration: none;
     transform: scale(1.1); /* Slight popup effect */
     transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 .contact-content span:hover {
-    color: #00ffff;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+    color: #f1f1f1;
 }
 
 /* Footer */
@@ -863,7 +894,7 @@ footer p {
 
 @media (min-width: 1024px) {
     .hero-text h1 {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
     }
 
     .hero-photo img {
@@ -939,6 +970,13 @@ header nav ul li a:hover::after {
 header nav ul li a:hover {
     color: #00b4d8;
 }
+/* Hovered homenav */
+header nav ul li a.active {
+    color: #00b4d8; /* Or your desired active color */
+  }
+  header nav ul li a.active::after {
+      transform: scaleX(1);
+  }
 
 /* Responsive Design for Header */
 

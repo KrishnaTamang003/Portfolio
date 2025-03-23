@@ -46,14 +46,14 @@
         <div class="about-container" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="section-title">About Me</h2>
             <p class="about-description">
-                I’m a Web Developer from Kathmandu, Nepal, skilled in <strong>HTML, CSS and JavaScript</strong>. I specialize in creating modern, responsive, and user-friendly websites. I also have experience with <strong>Flutter and basic React Native</strong>,enabling me to develop e-commerce and mobile applications.  
+                I’m Sanjay also known as Krishna Tamang, a Web Developer from Kathmandu, Nepal, skilled in <strong>HTML, CSS, and JavaScript</strong>. I also have experience with <strong>Flutter and basic React Native</strong>, allowing me to develop both web and mobile applications.  
                 <br><br>
-                Currently based in <strong>Bangalore, India</strong>, I’m pursuing a <strong>BCA degree</strong> while honing my web and mobile development skills. My design approach is sleek, classic, and minimal.  
+                Currently based in Bangalore, India, I am pursuing a <strong>BCA degree</strong> while working part-time at <strong>Happyearth Enterprises LLP</strong>. Balancing academics with professional experience has helped in my ability to manage operations, coordinate teams, and develop problem-solving skills in a real-world business environment. This role has given me hands-on experience in sales, product management, and warehouse operations, broadening my understanding of business processes alongside my technical expertise.  
                 <br><br>
-                In addition to tech, I have expertise in Sales and Product Management, as well as Warehouse Operations, gained from my work at <strong>Happyearth Enterprises LLP</strong>. This experience has strengthened me in business strategy, team coordination, and operational management skills.  
-                <br><br>
-                Outside of work, I love exploring new places, watching thrillers and sci-fi movies, and staying updated with tech trends. Music is also a big passion of mine, drawing inspiration from both modern and classic artists in my singing journey.  
+                Beyond work and studies, I have a keen interest in technology, movies, and music. I enjoy staying updated with the latest industry trends and innovations while also finding inspiration in films and music.  
             </p>
+            
+            
             
         </div>
     </section>
@@ -111,6 +111,15 @@
     <section id="projects">
         <h2 class="section-title">My Projects</h2>
         <div class="timeline">
+            <!-- Project 4 -->
+            <div class="timeline-item project-item-4" data-aos="fade-left" data-aos-duration="1000">
+                <div class="timeline-date">2024</div>
+                <div class="timeline-content">
+                    <h3 class="project-title">Personal Portfolio Website</h3>
+                    <p class="project-description">Designed and developed a personal portfolio website to showcase skills, projects, and experience. Utilized HTML, CSS, and JavaScript.</p>
+                    <a href="https://krishnatamang003.github.io/Portfolio/" class="project-link">View Details</a>
+                </div>
+            </div>
     
             <!-- Project 1 -->
             <div class="timeline-item project-item-1" data-aos="fade-right" data-aos-duration="1000">
@@ -142,15 +151,7 @@
                 </div>
             </div>
     
-            <!-- Project 4 -->
-            <div class="timeline-item project-item-4" data-aos="fade-left" data-aos-duration="1000">
-                <div class="timeline-date">2024</div>
-                <div class="timeline-content">
-                    <h3 class="project-title">Personal Portfolio Website</h3>
-                    <p class="project-description">Designed and developed a personal portfolio website to showcase skills, projects, and experience. Utilized HTML, CSS, and JavaScript.</p>
-                    <a href="https://krishnatamang003.github.io/Portfolio/" class="project-link">View Details</a>
-                </div>
-            </div>
+            
         </div>
     </section>
 
@@ -198,5 +199,35 @@
             });
         });
     </script>
+
+    <!-- Home nav hovered style -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const sections = document.querySelectorAll('section'); // Or specific section selectors
+          const navLinks = document.querySelectorAll('header nav ul li a');
+      
+          function highlightNavLink() {
+            let scrollPos = window.scrollY;
+      
+            sections.forEach(section => {
+              const sectionTop = section.offsetTop;
+              const sectionHeight = section.offsetHeight;
+              const sectionId = section.getAttribute('id');
+      
+              if (scrollPos >= sectionTop && scrollPos < (sectionTop + sectionHeight)) {
+                navLinks.forEach(link => {
+                  link.classList.remove('active'); // Remove active class from all links
+                  if (link.getAttribute('href').substring(1) === sectionId) {
+                    link.classList.add('active'); // Add active class to the corresponding link
+                  }
+                });
+              }
+            });
+          }
+      
+          window.addEventListener('scroll', highlightNavLink);
+          window.addEventListener('load', highlightNavLink); // Call on page load as well
+        });
+      </script>
 </body>
 </html>
