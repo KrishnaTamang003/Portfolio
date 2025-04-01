@@ -200,34 +200,48 @@
         });
     </script>
 
-    <!-- Home nav hovered style -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const sections = document.querySelectorAll('section'); // Or specific section selectors
-          const navLinks = document.querySelectorAll('header nav ul li a');
-      
-          function highlightNavLink() {
-            let scrollPos = window.scrollY;
-      
-            sections.forEach(section => {
-              const sectionTop = section.offsetTop;
-              const sectionHeight = section.offsetHeight;
-              const sectionId = section.getAttribute('id');
-      
-              if (scrollPos >= sectionTop && scrollPos < (sectionTop + sectionHeight)) {
-                navLinks.forEach(link => {
-                  link.classList.remove('active'); // Remove active class from all links
-                  if (link.getAttribute('href').substring(1) === sectionId) {
-                    link.classList.add('active'); // Add active class to the corresponding link
-                  }
-                });
-              }
-            });
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('header nav ul li a');
+      const homeLink = document.querySelector('header nav ul li a[href="#hero"]'); // Select the Home link
+  
+      function highlightNavLink() {
+        let scrollPos = window.scrollY;
+        let activeLinkFound = false;
+  
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+  
+          if (scrollPos >= sectionTop && scrollPos < (sectionTop + sectionHeight)) {
+            navLinks.forEach(link => link.classList.remove('active')); // Remove active from all links
+            const matchingLink = document.querySelector(`header nav ul li a[href="#${sectionId}"]`);
+            if (matchingLink) {
+              matchingLink.classList.add('active'); // Highlight the correct section link
+              activeLinkFound = true;
+            }
           }
-      
-          window.addEventListener('scroll', highlightNavLink);
-          window.addEventListener('load', highlightNavLink); // Call on page load as well
         });
-      </script>
+  
+        // If no section is highlighted and we're at the very top, ensure "Home" is always active
+        if (!activeLinkFound || scrollPos < 50) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          homeLink.classList.add('active'); // Make sure "Home" is active if we're at the top
+        }
+      }
+  
+      window.addEventListener('scroll', highlightNavLink);
+      window.addEventListener('load', highlightNavLink);
+      window.addEventListener('resize', highlightNavLink);
+  
+      // Ensure the same behavior on mobile devices
+      if (window.innerWidth <= 480) {
+        highlightNavLink();  // Call once to handle page load at top
+      }
+    });
+  </script>
+  
 </body>
 </html>

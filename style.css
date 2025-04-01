@@ -381,13 +381,29 @@ h5 {
 /* Responsive Design */
 @media (max-width: 768px) {
     .experience-box {
-        max-width: 90%;
+        max-width: 100%;
     }
 
     .sub-list {
         padding-left: 10px;
     }
 }
+
+@media (max-width: 768px) {
+    .education-box p {
+        font-size: 14px; /* Reduce font size for smaller screens */
+        line-height: 1.5; /* Adjust line spacing for readability */
+    }
+} 
+
+@media (max-width: 480px) {
+    .education-box p {
+        font-size: 12.5px; /* Further reduce font size for very small screens */
+        line-height: 1.4; /* Adjust spacing */
+        text-align: left; /* Avoid full justification on small screens */
+    }
+}
+
 
 /* ==========================================================================
    Project Section Styles
@@ -986,13 +1002,26 @@ header nav ul li a.active {
         padding: 7px;
     }
 
+    header nav ul {
+        display: flex;
+        justify-content: space-around; /* Ensures equal spacing between items */
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: 100%;
+    }
+
     header nav ul li {
-        margin-left: 20px; /* Further reduce spacing between menu items */
+        margin: 0; /* Remove unnecessary margin */
     }
 
     header nav ul li a {
-        font-size: 14px; /* Smaller font size for very small devices */
+        font-size: 15px; /* Smaller font size for very small devices */
+        text-align: center;
+        display: block;
+        padding: 5px 10px; /* Adjust padding for better touch area */
     }
+
 }
 html, body {
     overflow-x: hidden;
