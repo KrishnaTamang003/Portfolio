@@ -82,4 +82,19 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', highlightNavLink); // Recalculate on resize
 });
 
+// Scroll to top while refresh
+// Prevent auto-scroll to hash on refresh
+
+if (window.location.hash) {
+    // Remove hash temporarily and scroll to top
+    const hash = window.location.hash;
+    history.replaceState(null, null, ' '); // Clear the hash from URL
+    window.scrollTo(0, 0); // Scroll to top manually
+
+    // Optionally re-add the hash after a delay (if needed for highlighting)
+    setTimeout(() => {
+        history.replaceState(null, null, hash);
+    }, 50);
+}
+
 

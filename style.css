@@ -1,4 +1,4 @@
-/* General Reset */
+/* ================= General Reset ================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@
     scroll-behavior: smooth;
 }
 
-/* Body Styling */
+/* ================= Body Styling ================= */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(to right, #000428, #004e92);
@@ -15,23 +15,23 @@ body {
     overflow-x: hidden;
 }
 
-/* Hero Section */
+
+
+/* ================= Hero Section ================= */
 .hero-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 40px 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-    
+    min-height: 95vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ;    
     animation: fadeInUp 1.5s ease-out;
     border-bottom: 4px solid transparent;
     border-image: linear-gradient(to right, #000428, #00b4d8);
     border-image-slice: 1;
-    
-}
+    padding: 30px 30px;}
 
+/* ---------------- Hero Content ---------------- */
 .hero-content {
     display: flex;
     flex-direction: column;
@@ -42,12 +42,13 @@ body {
     animation: fadeInUp 1.7s ease-out;
 }
 
+/* ---------------- Hero Text ---------------- */
 .hero-text {
     max-width: 100%;
 }
 
 .hero-text h1 {
-    font-size: 2.3rem; /* Base size for h1 - increased from 2.5rem */
+    font-size: 2.3rem;
     font-weight: 700;
     color: #fff;
     animation: fadeInUp 1.5s ease-out;
@@ -55,133 +56,184 @@ body {
 
 .hero-text h1 span {
     color: #00b4d8;
-    font-size: 2.9rem; /* Smaller than h1 */
-    font-weight: 700; /* Optional: Makes it stand out more */
-
-
+    font-size: 2.9rem;
+    font-weight: 700;
 }
+
+/* Responsive Font Sizes for Devices < 480px */
 @media (max-width: 480px) {
     .hero-text h1 {
-        font-size: 2.3rem; /* Further reduce for very small screens and match span*/
+        font-size: 2.1rem;
     }
 
     .hero-text h1 span {
-        font-size: 2.5rem; /* Even smaller for span on very small screens */
+        font-size: 2.3rem;
     }
 }
 
-.hero-text p {
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
-    margin: 20px auto;
-    position: relative;
-    display: inline-block;
-    padding: 0 20px; /* add padding so stars don't overlap text */
+/* Further optimization for very small devices like Galaxy S8 & iPhone SE (< 360px) */
+@media (max-width: 360px) {
+    .hero-text h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-text h1 span {
+        font-size: 2.1rem;
+    }
 }
 
+/* Extra small phones < 320px (like older devices or very narrow browsers) */
+@media (max-width: 320px) {
+    .hero-text h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero-text h1 span {
+        font-size: 2rem;
+    }
+}
+
+
+/* ---------------- Hero Paragraph ---------------- */
 .hero-text p {
-    position: relative;
     font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.9);
     max-width: 600px;
     margin: 20px auto;
+    position: relative;
     display: inline-block;
     padding: 0 15px;
     line-height: 1.5;
     z-index: 2;
 }
+/* --- Hero Decorative Stars --- */
 
-/* ✦ Base style */
+/* Ensure container supports absolute positioning */
+.hero-text p {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+}
+
+/* Static stars on left/right */
 .hero-text p::before,
-.hero-text p::after,
-.hero-text p::after,
-.hero-text p .twinkle1,
-.hero-text p .twinkle2,
-.hero-text p .twinkle3 {
+.hero-text p::after {
     content: '✦';
     position: absolute;
     color: #00b4d8;
     font-size: 1.1rem;
     opacity: 0.8;
-    z-index: 0;
-    animation: twinkle 4s infinite ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+    animation: twinkleStatic 4s infinite ease-in-out;
 }
 
-/* Left of text */
 .hero-text p::before {
     left: 0;
     top: 50%;
     transform: translate(-100%, -50%);
 }
 
-/* Right of text */
 .hero-text p::after {
     right: 0;
     top: 50%;
     transform: translate(100%, -50%);
+    animation-duration: 5s;
+}
+.hero-text p {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
 }
 
-/* Extra ✦ behind the text */
+/* Static stars */
 .hero-text p::before,
 .hero-text p::after {
-    z-index: 1;
-}
-
-.hero-text p::after,
-.hero-text p::before,
-.hero-text p .twinkle1,
-.hero-text p .twinkle2,
-.hero-text p .twinkle3 {
-    z-index: 0;
-}
-
-.hero-text p .twinkle1,
-.hero-text p .twinkle2,
-.hero-text p .twinkle3 {
     content: '✦';
     position: absolute;
-    font-size: 1.2rem;
     color: #00b4d8;
+    font-size: 1rem;
     opacity: 0.6;
-    animation: float 6s ease-in-out infinite, twinkle 5s infinite ease-in-out;
+    pointer-events: none;
+    animation: twinkleStatic 5s ease-in-out infinite;
 }
 
-/* Positioning decorative ✦s */
-.hero-text p .twinkle1 {
-    top: -30px;
-    left: 20%;
-    animation-delay: 0.5s;
+.hero-text p::before {
+    left: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.hero-text p .twinkle2 {
-    bottom: -25px;
-    right: 15%;
+.hero-text p::after {
+    right: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
     animation-delay: 1s;
 }
 
+/* Floating twinkles */
+.hero-text p .twinkle1,
+.hero-text p .twinkle2,
 .hero-text p .twinkle3 {
-    top: -20px;
-    right: 10%;
-    animation-delay: 1.8s;
+    position: absolute;
+    font-size: 1.1rem;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-/* Animations */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+.hero-text p .twinkle1::before,
+.hero-text p .twinkle2::before,
+.hero-text p .twinkle3::before {
+    content: '✦';
+    color: #00b4d8;
+    position: absolute;
+    opacity: inherit;
 }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
+/* Star positions & animations */
+.hero-text p .twinkle1 {
+    top: -24px;
+    left: 10%;
+    animation: floatA 6s ease-in-out infinite;
 }
- 
+
+.hero-text p .twinkle2 {
+    top: -28px;
+    right: 12%;
+    animation: floatB 7s ease-in-out infinite;
+}
+
+.hero-text p .twinkle3 {
+    bottom: -26px;
+    right: 18%;
+    animation: floatC 5.5s ease-in-out infinite;
+}
+
+/* Keyframes: simple float + twinkle */
+@keyframes floatA {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(-5px); opacity: 0.9; }
+}
+@keyframes floatB {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(6px); opacity: 1; }
+}
+@keyframes floatC {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-6px); opacity: 0.95; }
+}
+@keyframes twinkleStatic {
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
+    50% { opacity: 0.9; transform: scale(1.1); }
+}
+
+
+
+/* ---------------- Hero Button ---------------- */
 .hero-text .btn {
     display: inline-block;
     padding: 12px 32px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 20px 0 10px;
     background: transparent;
     color: #00b4d8;
     font-weight: 600;
@@ -205,7 +257,6 @@ body {
     background: #00b4d8;
     z-index: -1;
     transform: scaleX(0);
-    transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -225,6 +276,7 @@ body {
     border-color: #0082a7;
 }
 
+/* ---------------- Hero Photo ---------------- */
 .hero-photo {
     position: relative;
     display: inline-block;
@@ -241,7 +293,6 @@ body {
     border: 5px solid rgba(0, 183, 255, 0.8);
     z-index: -1;
     transition: transform 0.4s ease-in-out;
-    
 }
 
 .hero-photo img {
@@ -250,16 +301,13 @@ body {
     margin-top: 15px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid white;
-    position: relative;
-    border: 2px solid transparent;
     background: linear-gradient(white, white) padding-box,
                 linear-gradient(to bottom right, #555554, #7cebe1) border-box;
+    border: 2px solid transparent;
     transition: transform 0.4s ease-in-out, box-shadow 0.5s ease-in-out;
-
 }
 
-/* 🚀 Apply hover effect to both `.hero-photo` and `.hero-photo img` together */
+/* Hover Effects */
 .hero-photo:hover::before,
 .hero-photo:hover img {
     transform: scale(1.1);
@@ -268,7 +316,8 @@ body {
 
 
 
-/* About Section */
+
+/* ================= About Section ================= */
 .about-section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 20, 50, 0.9));
     backdrop-filter: blur(12px);
@@ -276,40 +325,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 80px 20px;
+    margin: 0 auto;
+    width: 100%;
     animation: fadeInUp 1.5s ease-out;
     border-bottom: 4px solid transparent;
     border-image: linear-gradient(to right, #000428, #004e92);
     border-image-slice: 1;
-    
-    /* Improved margin and padding */
-    padding: 80px 20px;  /* More breathing space */
-    margin: 0 auto; /* Centering the section */
-    width: 100%; /* Full width */
     hyphens: auto;
 }
 
-
-@media (max-width: 1024px) { /* Tablet screens */
-    .about-section {
-        padding: 60px 15px; /* Reduce padding slightly */
-    }
-}
-
-@media (max-width: 768px) { /* Mobile screens */
-    .about-section {
-        padding: 50px 10px; /* Further reduced padding */
-    }
-}
-
-
 .about-container {
     max-width: 1000px;
+    width: 100%;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 1400px
+}
+
+.about-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0, 255, 255, 0.5);
 }
 
 .section-title {
@@ -317,8 +355,8 @@ body {
     font-weight: bold;
     color: #fff;
     margin-bottom: 20px;
-    text-transform: none;
     letter-spacing: 2px;
+    text-transform: none;
     animation: fadeInUp 1s ease-out;
 }
 
@@ -331,16 +369,21 @@ body {
     animation: fadeInUp 1.5s ease-out 0.5s;
 }
 
+/* ================= Responsive ================= */
+@media (max-width: 1024px) {
+    .about-section {
+        padding: 60px 15px;
+    }
+}
 
-
-.about-container:hover {
-    transform: translateY(-5px);
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 20px 35px rgba(0, 255, 255, 0.5);
+@media (max-width: 768px) {
+    .about-section {
+        padding: 50px 10px;
+    }
 }
 
 
-/* Experience Section Styling */
+/* ================= Experience Section ================= */
 .experience-section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 20, 50, 0.95));
     padding: 80px 30px;
@@ -350,19 +393,20 @@ body {
     border-bottom: 4px solid transparent;
     border-image: linear-gradient(to right, #000428, #004e92);
     border-image-slice: 1;
-    
 }
-h3{
+
+h3 {
     font-weight: 900;
     padding-bottom: 8px;
 }
+
 h5 {
     color: #00eaff;
     font-size: 14px;
     margin-top: 5px;
 }
 
-/* Experience Container */
+/* ================= Experience Container ================= */
 .experience-container {
     display: flex;
     flex-direction: column;
@@ -372,7 +416,7 @@ h5 {
     margin: 0 auto;
 }
 
-/* Experience Box Styling */
+/* ================= Experience Box ================= */
 .experience-box {
     background: rgba(255, 255, 255, 0.12);
     padding: 25px;
@@ -390,7 +434,7 @@ h5 {
     box-shadow: 0 12px 30px rgba(0, 255, 255, 0.5);
 }
 
-/* Sub-list for Software & Business Tools */
+/* ================= Sub-list (Software & Tools) ================= */
 .sub-list {
     list-style: none;
     padding-left: 0;
@@ -400,46 +444,23 @@ h5 {
     max-width: 100%;
 }
 
-/* List items styling */
 .sub-list li {
-    font-size: 0.95rem; /* Slightly smaller font for better readability */
+    font-size: 0.95rem;
     padding: 6px 0;
     color: #ddd;
     display: flex;
     align-items: center;
-    flex-wrap: wrap; /* Ensures proper wrapping on small screens */
+    flex-wrap: wrap;
 }
 
-/* Styling for highlighted text */
 .sub-list li span {
     font-weight: 600;
     color: #00eaff;
     margin-right: 6px;
-    flex-shrink: 0; /* Prevents shrinking on smaller screens */
+    flex-shrink: 0;
 }
 
-/* Responsive Design for Smaller Screens */
-@media (max-width: 480px) {
-    .sub-list {
-        padding-left: 10px;
-        border-left-width: 2px;
-    }
-
-    .sub-list li {
-        font-size: 0.9rem;
-        padding: 5px 0;
-        flex-direction: column; /* Stacks elements on very small screens */
-        align-items: flex-start;
-        hyphens: auto;
-
-    }
-
-    .sub-list li span {
-        margin-bottom: 2px; /* Adds spacing when stacked */
-    }
-}
-
-/* Educational Background Section */
+/* ================= Education Box ================= */
 .education-box {
     background: rgba(255, 255, 255, 0.12);
     padding: 25px;
@@ -457,7 +478,6 @@ h5 {
     box-shadow: 0 12px 30px rgba(0, 255, 255, 0.5);
 }
 
-/* Primary Heading (Main Point) */
 .education-box li {
     font-size: 1.2rem;
     font-weight: 600;
@@ -465,33 +485,30 @@ h5 {
     margin-bottom: 10px;
 }
 
-/* Secondary Text (Description) */
 .education-box p {
-    font-size: 0.9rem;   /* Smaller Font */
+    font-size: 0.9rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.7); /* Reduced visibility */
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.4;
     margin-top: 5px;
 }
 
-/* Date Styling */
 .education-box h5 {
     color: #00eaff;
     font-size: 1rem;
     font-weight: 600;
     margin-top: 8px;
 }
+
 .edu-title {
-    font-size: 1.0rem; /* Slightly larger for emphasis */
+    font-size: 1rem;
     font-weight: 600;
-    color: #fff; /* Matching the cyan theme */
-    display: block; /* Ensures it appears clearly as a heading */
-    margin-bottom: 5px; /* Adds spacing before the description */
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
 }
 
-
-
-/* Responsive Design */
+/* ================= Responsive Design ================= */
 @media (max-width: 768px) {
     .experience-box {
         max-width: 100%;
@@ -500,23 +517,37 @@ h5 {
     .sub-list {
         padding-left: 10px;
     }
-}
 
-@media (max-width: 768px) {
     .education-box p {
-        font-size: 14px; /* Reduce font size for smaller screens */
-        line-height: 1.5; /* Adjust line spacing for readability */
+        font-size: 14px;
+        line-height: 1.5;
     }
-} 
+}
 
 @media (max-width: 480px) {
+    .sub-list {
+        padding-left: 10px;
+        border-left-width: 2px;
+    }
+
+    .sub-list li {
+        font-size: 0.9rem;
+        padding: 5px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        hyphens: auto;
+    }
+
+    .sub-list li span {
+        margin-bottom: 2px;
+    }
+
     .education-box p {
-        font-size: 12.5px; /* Further reduce font size for very small screens */
-        line-height: 1.4; /* Adjust spacing */
-        text-align: left; /* Avoid full justification on small screens */
+        font-size: 12.5px;
+        line-height: 1.4;
+        text-align: left;
     }
 }
-
 
 /* ==========================================================================
    Project Section Styles
@@ -536,7 +567,7 @@ h5 {
 }
 
 /* ==========================================================================
-   Timeline Styles
+   Timeline Container
    ========================================================================== */
 
 .timeline {
@@ -564,9 +595,10 @@ h5 {
     position: relative;
     display: flex;
     align-items: center;
+    padding: 20px;
+    color: white;
 }
 
-/* Timeline Item Alignment (Odd/Even) */
 .timeline-item:nth-child(odd) {
     justify-content: flex-start;
 }
@@ -576,7 +608,7 @@ h5 {
 }
 
 /* ==========================================================================
-   Timeline Date Styles
+   Timeline Date
    ========================================================================== */
 
 .timeline-date {
@@ -588,7 +620,6 @@ h5 {
     position: relative;
 }
 
-/* Timeline Date Alignment (Odd/Even) */
 .timeline-item:nth-child(odd) .timeline-date {
     order: 2;
     margin-left: 20px;
@@ -599,7 +630,6 @@ h5 {
     margin-right: 20px;
 }
 
-/* Timeline Date Arrows */
 .timeline-date::before,
 .timeline-date::after {
     content: "\25B8";
@@ -624,29 +654,55 @@ h5 {
 }
 
 /* ==========================================================================
-   Timeline Content Styles
+   Timeline Content Box
    ========================================================================== */
 
 .timeline-content {
     background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.08);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     width: 45%;
     box-sizing: border-box;
+    color: white;
     display: flex;
     flex-direction: column;
-    height: 230px; /* Consider setting a min-height instead */
+    height: 230px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.timeline-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
 }
 
 .timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.15);
+    transform: translateY(-7px);
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
 }
 
-/* Project Title */
+/* Text Layer (on top of overlay) */
+.timeline-content h3,
+.timeline-content p,
+.timeline-content a {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   Project Details
+   ========================================================================== */
+
 .project-title {
     font-size: 1.2rem;
     font-weight: 600;
@@ -659,7 +715,6 @@ h5 {
     color: #00b4d8;
 }
 
-/* Project Description */
 .project-description {
     font-size: 0.9rem;
     color: #ddd;
@@ -669,10 +724,10 @@ h5 {
 }
 
 /* ==========================================================================
-   Project Link Styles
+   Project Link
    ========================================================================== */
 
-.timeline-content .project-link {
+.project-link {
     margin-top: auto;
     display: flex;
     align-items: center;
@@ -689,12 +744,12 @@ h5 {
     overflow: hidden;
 }
 
-.timeline-content .project-link:hover {
+.project-link:hover {
     background-color: rgba(0, 180, 216, 0.15);
     color: #fff;
 }
 
-.timeline-content .project-link::before {
+.project-link::before {
     content: "";
     position: absolute;
     top: 0;
@@ -707,37 +762,26 @@ h5 {
     border-radius: inherit;
 }
 
-.timeline-content .project-link:hover::before {
+.project-link:hover::before {
     opacity: 1;
 }
 
-.timeline-content .project-link::after {
-    content: '\2192'; /* Unicode right arrow */
+.project-link::after {
+    content: '\2192';
     position: absolute;
     right: 8px;
     font-size: 0.8rem;
     transition: transform 0.3s ease;
 }
 
-.timeline-content .project-link:hover::after {
+.project-link:hover::after {
     transform: translateX(5px);
 }
-/* Common Styling for All Projects */
-.timeline-content {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    width: 45%; /* Maintain width */
-    box-sizing: border-box;
-    color: white;
-}
 
-/* Unique Backgrounds for Each Project */
+/* ==========================================================================
+   Unique Backgrounds for Each Project
+   ========================================================================== */
+
 .project-item-1 .timeline-content {
     background-image: url('Its\ Your\ Bouquet\ option.png');
 }
@@ -754,48 +798,13 @@ h5 {
     background-image: url('MyPhoto.jpg');
 }
 
-/* Dark Overlay to Improve Readability */
-.timeline-content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
-    border-radius: 12px;
-}
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
 
-/* Hover Effect */
-.timeline-content:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
-}
-
-/* Ensure Text is Above the Background */
-.timeline-content h3,
-.timeline-content p,
-.timeline-content a {
-    position: relative;
-    z-index: 2;
-}
-
-/* Adjust timeline item appearance if needed due to background images. Consider to change the color of the Project Title and description */
-.timeline-item {
-    padding: 20px;
-    color: white;
-}
-
-/* Responsive code */
-
-/* Responsive code */
-
-/* Media Query for Smaller Screens */
 @media (max-width: 768px) {
-    @media (max-width: 768px) {
-
     #projects {
-      padding: 60px 15px; /* Slightly reduced padding for smaller screens */
+        padding: 60px 15px;
     }
 
     .timeline {
@@ -808,32 +817,30 @@ h5 {
     }
 
     .timeline-item {
-        margin-bottom: 20px; /* Final adjustment */
+        margin-bottom: 20px;
         min-height: auto;
-        display: block;  /* Block display will make the elements stacked like in a bigger screen */
+        display: block;
     }
 
     .timeline-content {
         width: 90%;
         margin: 10px auto;
-        min-height: 120px;  /* Reduced Further */
-        padding: 15px; /* Reduce padding inside content box */
+        min-height: 120px;
+        padding: 15px;
     }
 
     .timeline-item:nth-child(odd),
     .timeline-item:nth-child(even) {
-        justify-content: center; /* Content is already centered */
+        justify-content: center;
     }
 
     .timeline-item:nth-child(odd) .timeline-date,
     .timeline-item:nth-child(even) .timeline-date {
         order: -1;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 2px;
+        margin: 0 auto 2px auto;
         display: block;
         text-align: center;
-        font-size: 0.7rem; /* Smaller date for better fit */
+        font-size: 0.7rem;
     }
 
     .timeline-date::before,
@@ -842,22 +849,22 @@ h5 {
     }
 
     .project-title {
-        font-size: 1rem; /* Smaller title for better fit */
-        margin-bottom: 6px; /* Reduced margin */
+        font-size: 1rem;
+        margin-bottom: 6px;
     }
 
     .project-description {
-        font-size: 0.8rem; /* Smaller description */
-        line-height: 1.3;  /* More readable line height */
-        margin-bottom: 10px; /* Reduced margin */
+        font-size: 0.8rem;
+        line-height: 1.3;
+        margin-bottom: 10px;
     }
 
-    .timeline-content .project-link {
-        font-size: 0.7rem; /* Make link smaller */
-        padding: 6px 12px; /* Reduced padding */
+    .project-link {
+        font-size: 0.7rem;
+        padding: 6px 12px;
     }
 }
-}
+
 /* Contact Section */
 .contact-section {
     padding: 60px 20px;
@@ -970,12 +977,13 @@ footer p {
     .hero-section {
         flex-direction: row;
         justify-content: space-between;
-        padding: 0 40px;
+        padding: 0 30px;
+        margin-top: 10px;
     }
     a{
         flex-direction: row;
         justify-content: space-between;
-        padding:10px;
+        padding:5px;
     }
 
     .hero-content {
@@ -1219,7 +1227,7 @@ html, body {
 /* Optional: Hide arrow on smaller screens if it gets cluttered */
 @media (max-width: 600px) {
     .scroll-down-arrow {
-        bottom: 20px; /* Adjust position */
+        bottom: 15px; /* Adjust position */
     }
      .scroll-down-arrow svg {
         width: 24px;
