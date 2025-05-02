@@ -121,41 +121,10 @@ body {
     content: '✦';
     position: absolute;
     color: #00b4d8;
-    font-size: 1.1rem;
-    opacity: 0.8;
-    z-index: 1;
-    pointer-events: none;
-    animation: twinkleStatic 4s infinite ease-in-out;
-}
-
-.hero-text p::before {
-    left: 0;
-    top: 50%;
-    transform: translate(-100%, -50%);
-}
-
-.hero-text p::after {
-    right: 0;
-    top: 50%;
-    transform: translate(100%, -50%);
-    animation-duration: 5s;
-}
-.hero-text p {
-    position: relative;
-    display: inline-block;
-    z-index: 2;
-}
-
-/* Static stars */
-.hero-text p::before,
-.hero-text p::after {
-    content: '✦';
-    position: absolute;
-    color: #00b4d8;
     font-size: 1rem;
     opacity: 0.6;
     pointer-events: none;
-    animation: twinkleStatic 5s ease-in-out infinite;
+    animation: twinkleStatic 2s ease-in-out infinite; /* Reduced duration to 2s for faster twinkle */
 }
 
 .hero-text p::before {
@@ -168,7 +137,7 @@ body {
     right: -1.5rem;
     top: 50%;
     transform: translateY(-50%);
-    animation-delay: 1s;
+    animation-delay: 0.5s; /* Slight delay for variety */
 }
 
 /* Floating twinkles */
@@ -194,19 +163,19 @@ body {
 .hero-text p .twinkle1 {
     top: -24px;
     left: 10%;
-    animation: floatA 6s ease-in-out infinite;
+    animation: floatA 4s ease-in-out infinite; /* Reduced to 4s for faster float */
 }
 
 .hero-text p .twinkle2 {
     top: -28px;
     right: 12%;
-    animation: floatB 7s ease-in-out infinite;
+    animation: floatB 5s ease-in-out infinite; /* Reduced to 5s for faster float */
 }
 
 .hero-text p .twinkle3 {
     bottom: -26px;
     right: 18%;
-    animation: floatC 5.5s ease-in-out infinite;
+    animation: floatC 4.5s ease-in-out infinite; /* Reduced to 4.5s for faster float */
 }
 
 /* Keyframes: simple float + twinkle */
@@ -222,6 +191,8 @@ body {
     0%, 100% { transform: translateY(0); opacity: 0.6; }
     50% { transform: translateY(-6px); opacity: 0.95; }
 }
+
+/* Faster twinkling animation */
 @keyframes twinkleStatic {
     0%, 100% { opacity: 0.4; transform: scale(0.95); }
     50% { opacity: 0.9; transform: scale(1.1); }
@@ -240,41 +211,26 @@ body {
     text-decoration: none;
     border-radius: 30px;
     border: 2px solid #00b4d8;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 180, 216, 0.2);
     position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 2px 12px rgba(0, 180, 216, 0.1);
-}
-
-.hero-text .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #00b4d8;
-    z-index: -1;
-    transform: scaleX(0);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .hero-text .btn:hover {
     color: #fff;
-    border-color: #0096c7;
-    box-shadow: 0 4px 16px rgba(0, 180, 216, 0.2);
-}
-
-.hero-text .btn:hover::before {
-    transform: scaleX(1);
+    background-color: #00b4d8;
+    border-color: #00b4d8;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 180, 216, 0.3); /* deeper shadow for 3D effect */
 }
 
 .hero-text .btn:active {
-    transform: scale(0.98);
-    background: #0082a7;
-    border-color: #0082a7;
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 6px rgba(0, 180, 216, 0.2); /* back to normal shadow */
+    background-color: #0096c7;
+    border-color: #0096c7;
 }
+
 
 /* ---------------- Hero Photo ---------------- */
 .hero-photo {
@@ -396,8 +352,8 @@ body {
 }
 
 h3 {
-    font-weight: 900;
-    padding-bottom: 8px;
+    font-weight: 1100;
+    padding-bottom: 9px;
 }
 
 h5 {
@@ -952,6 +908,8 @@ span{
     color: #f1f1f1;
 }
 
+
+
 /* Footer */
 footer {
     padding: 20px;
@@ -1187,7 +1145,7 @@ html, body {
     overflow-x: hidden;
   }
 
-  /* --- Scroll Down Arrow --- */
+ /* --- Scroll Down Arrow --- */
 .scroll-down-arrow {
     position: absolute;
     bottom: 30px; /* Adjust distance from bottom */
@@ -1195,14 +1153,16 @@ html, body {
     transform: translateX(-50%);
     cursor: pointer;
     z-index: 5; /* Ensure it's clickable above hero background if any */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease; /* Smooth transition for fade-in */
 }
 
 .scroll-down-arrow svg {
     width: 28px; /* Size of the arrow */
     height: 28px;
     fill: #ffffff; /* Arrow color - Adjust to contrast with your hero background */
-    opacity: 0.7;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0.85; /* Slightly increased opacity for better visibility */
+    transition: opacity 0.3s ease, transform 0.3s ease-out;
     animation: bounceDown 2s infinite ease-in-out;
 }
 
@@ -1229,9 +1189,8 @@ html, body {
     .scroll-down-arrow {
         bottom: 15px; /* Adjust position */
     }
-     .scroll-down-arrow svg {
+    .scroll-down-arrow svg {
         width: 24px;
         height: 24px;
     }
 }
-  

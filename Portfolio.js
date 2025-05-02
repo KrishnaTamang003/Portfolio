@@ -1,100 +1,89 @@
-// Initialize AOS (Animate On Scroll)
-AOS.init({
-    duration: 1000, // Duration of animation
-    easing: 'ease-in-out', // Easing type
-    // once: true // Uncomment if animation should happen only once
+// --- Scroll Behavior (Place this OUTSIDE DOMContentLoaded) ---
+// Prevent browser from restoring scroll position on refresh
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Scroll to top on full load (with small delay to avoid layout shift)
+window.addEventListener('load', () => {
+    setTimeout(() => window.scrollTo(0, 0), 10);
 });
 
-// Smooth Scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        // Prevent default only for internal links, allow external links
-        if (this.getAttribute('href').startsWith('#')) {
-            e.preventDefault();
-            const targetElement = document.querySelector(this.getAttribute('href'));
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- AOS Initialization ---
+    AOS.init({ duration: 800, easing: 'ease-in-out' });
+
+    // --- Smooth Scroll for Anchor Links (including scroll-down icon) ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start' // Aligns the top of the target element to the top of the scroll container
-                });
+                e.preventDefault();
+
+                // Modern and cleaner scroll using scroll-margin-top (set in CSS)
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+
+                // Optional: update the URL hash without jump
+                // history.pushState(null, null, targetId);
+            } else {
+                console.warn(`Smooth scroll target not found for href: ${targetId}`);
             }
-        }
+        });
     });
-});
 
-// Navigation link highlighting on scroll
-document.addEventListener('DOMContentLoaded', function () {
-    const sections = document.querySelectorAll('section'); // Select all section elements
+    // --- Highlight Navigation on Scroll using IntersectionObserver ---
     const navLinks = document.querySelectorAll('header nav ul li a');
-    const homeLink = document.querySelector('header nav ul li a[href="#hero"]');
+    const sections = document.querySelectorAll('section[id]');
 
-    // Ensure sections and navLinks exist before proceeding
-    if (!sections.length || !navLinks.length || !homeLink) {
-        console.warn("Could not find sections, navigation links, or home link for highlighting.");
-        return;
-    }
+    const observerOptions = {
+        rootMargin: "-30% 0px -50% 0px", // Adjust margins for smoother triggering
+        threshold: 0
+    };
 
-    function highlightNavLink() {
-        let scrollY = window.scrollY;
-        let currentSectionId = null;
+    const observer = new IntersectionObserver(entries => {
+        let activeEntry = null;
 
-        // Offset to trigger highlight slightly before section top hits the very top
-        const highlightOffset = window.innerHeight * 0.4; // Adjust as needed (40% from top)
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            // Check if the current scroll position is within the section boundaries (with offset)
-            if (scrollY >= sectionTop - highlightOffset && scrollY < sectionTop + sectionHeight - highlightOffset) {
-                currentSectionId = sectionId;
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.boundingClientRect.top <= window.innerHeight * 0.5) {
+                activeEntry = entry;
             }
         });
 
-        // Remove active class from all links first
+        // Deactivate all links first
         navLinks.forEach(link => link.classList.remove('active'));
 
-        // Add active class to the matching link or default to Home if near the top or no match
-        if (currentSectionId) {
-            const matchingLink = document.querySelector(`header nav ul li a[href="#${currentSectionId}"]`);
-            if (matchingLink) {
-                matchingLink.classList.add('active');
-            } else {
-                // Fallback to home if matching link isn't found for some reason
-                 homeLink.classList.add('active');
+        if (activeEntry) {
+            const activeLink = document.querySelector(`header nav ul li a[href="#${activeEntry.target.id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        } else {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop < 100) {
+                const homeLink = document.querySelector('header nav ul li a[href="#hero"]');
+                if (homeLink) homeLink.classList.add('active');
             }
-        } else if (scrollY < window.innerHeight * 0.5) {
-            // If scrolled near the top (less than half viewport height), activate Home
-            homeLink.classList.add('active');
         }
-         // If scrolled to the very bottom, make sure the last link (#contact) is active
-         else if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) { // 50px buffer
-            const contactLink = document.querySelector('header nav ul li a[href="#contact"]');
-             if(contactLink) contactLink.classList.add('active');
-         }
+    }, observerOptions);
 
+    sections.forEach(section => {
+        if (section.id) observer.observe(section);
+    });
+
+    // --- Dynamic Copyright ---
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Initial call and event listeners
-    highlightNavLink(); // Call on load
-    window.addEventListener('scroll', highlightNavLink);
-    window.addEventListener('resize', highlightNavLink); // Recalculate on resize
-});
-
-// Scroll to top while refresh
-// Prevent auto-scroll to hash on refresh
-
-if (window.location.hash) {
-    // Remove hash temporarily and scroll to top
-    const hash = window.location.hash;
-    history.replaceState(null, null, ' '); // Clear the hash from URL
-    window.scrollTo(0, 0); // Scroll to top manually
-
-    // Optionally re-add the hash after a delay (if needed for highlighting)
+}); // End of DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Make Scroll Down Arrow Visible after 1.5 seconds ---
     setTimeout(() => {
-        history.replaceState(null, null, hash);
-    }, 50);
-}
-
-
+        const scrollArrow = document.querySelector('.scroll-down-arrow');
+        if (scrollArrow) {
+            scrollArrow.style.opacity = '1'; // Make it visible
+        }
+    }, 1500); // 1500ms = 1.5 seconds
+});
