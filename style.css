@@ -200,37 +200,74 @@ body {
 
 
 
-/* ---------------- Hero Button ---------------- */
+/* Button Container (Original) */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Base Button (Almost Original) */
 .hero-text .btn {
     display: inline-block;
     padding: 12px 32px;
-    margin: 20px 0 10px;
-    background: transparent;
-    color: #00b4d8;
+    margin: 10px 0;
     font-weight: 600;
     text-decoration: none;
     border-radius: 30px;
     border: 2px solid #00b4d8;
     transition: all 0.3s ease;
     box-shadow: 0 2px 6px rgba(0, 180, 216, 0.2);
-    position: relative;
 }
 
+/* Learn More Button (Subtle Arrow Animation Only) */
+.hero-text .btn.learn-more {
+    background: transparent;
+    color: #00b4d8;
+}
+
+.hero-text .btn.learn-more .arrow {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.hero-text .btn.learn-more:hover .arrow {
+    animation: subtleBounce 0.8s ease infinite;
+}
+
+@keyframes subtleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+}
+
+/* Download CV Button (Original + Tiny Gradient) */
+.hero-text .btn.download-cv {
+    background: linear-gradient(to right, #00b4d8, #0096c7);
+    color: white;
+    border-color: transparent;
+}
+
+/* Hover Effects (Original) */
 .hero-text .btn:hover {
-    color: #fff;
-    background-color: #00b4d8;
-    border-color: #00b4d8;
     transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 180, 216, 0.3); /* deeper shadow for 3D effect */
+    box-shadow: 0 8px 16px rgba(0, 180, 216, 0.3);
 }
 
+.hero-text .btn.learn-more:hover {
+    background: linear-gradient(to right, #00b4d8, #0096c7);
+    color: white;
+}
+
+.hero-text .btn.download-cv:hover {
+    background: linear-gradient(to right, #0096c7, #0077b6);
+}
+
+/* Active State (Original) */
 .hero-text .btn:active {
-    transform: translateY(1px) scale(0.98);
-    box-shadow: 0 2px 6px rgba(0, 180, 216, 0.2); /* back to normal shadow */
-    background-color: #0096c7;
-    border-color: #0096c7;
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 180, 216, 0.2);
 }
-
 
 /* ---------------- Hero Photo ---------------- */
 .hero-photo {
