@@ -60,6 +60,7 @@ body {
     font-weight: 700;
 }
 
+
 /* Responsive Font Sizes for Devices < 480px */
 @media (max-width: 480px) {
     .hero-text h1 {
@@ -200,12 +201,67 @@ body {
 
 
 
-/* Button Container (Original) */
 .hero-buttons {
     display: flex;
-    gap: 15px;
+    justify-content: left; /* Center horizontally */
+    align-items: cenlter;     /* Center vertically if needed */
+    gap: 15px;               /* Space between buttons */
+    flex-wrap: wrap;         /* Allows wrapping on very tiny screens */
     margin-top: 20px;
 }
+
+/* Optional: Make buttons responsive in width */
+.hero-buttons .btn {
+    padding: 12px 24px;         /* Adjust padding for nice size */
+    min-width: 120px;           /* Prevents buttons from shrinking too small */
+    text-align: center;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #00b4d8;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.hero-buttons .btn:hover {
+    background-color: #0095ba;
+}
+
+/* Optional tweak for very small screens */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-text {
+        order: 1;
+        width: 100%;
+    }
+
+    .hero-photo {
+        order: 0;
+        margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+        order: 2;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+        flex-wrap: nowrap; /* Keep buttons in a row */
+    }
+
+    .hero-buttons .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+}
+
+
 
 /* Base Button (Almost Original) */
 .hero-text .btn {
